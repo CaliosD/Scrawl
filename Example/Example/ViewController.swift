@@ -1,21 +1,22 @@
 //
 //  ViewController.swift
-//  Scrawl
+//  Example
 //
-//  Created by Calios on 11/23/17.
+//  Created by Calios on 11/27/17.
 //  Copyright © 2017 Calios. All rights reserved.
 //
 
 import UIKit
+import Scrawl
 
-class ScrawlViewController: UIViewController {
+class ViewController: UIViewController {
 
 	@IBOutlet var scrawlView: CDScrawlView!
 	@IBOutlet var resetButton: UIButton!
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		scrawlView.backingImage = #imageLiteral(resourceName: "test")
 		scrawlView.brushColor = .orange
 		scrawlView.emptyHandler = { isEmpty in
@@ -25,11 +26,6 @@ class ScrawlViewController: UIViewController {
 
 	@IBAction func reset(_ sender: Any) {
 		scrawlView.resetBrushes()
-	}
-	
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
 }
 

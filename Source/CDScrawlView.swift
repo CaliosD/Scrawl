@@ -8,9 +8,9 @@
 
 import UIKit
 
-class CDScrawlView: UIView {
-	var imageView: UIImageView?
-	var backingImage: UIImage? {
+public class CDScrawlView: UIView {
+	public var imageView: UIImageView?
+	public var backingImage: UIImage? {
 		didSet {
 			if backingImage != nil {
 				layoutIfNeeded()
@@ -18,7 +18,7 @@ class CDScrawlView: UIView {
 		}
 	}
 	
-	var brushColor: UIColor = .black {
+	public var brushColor: UIColor = .black {
 		didSet {
 			model.brushColor = brushColor
 			bezierPathLayer.strokeColor = brushColor.cgColor
@@ -34,7 +34,7 @@ class CDScrawlView: UIView {
 		}
 	}
 	
-	var emptyHandler: ((Bool) -> Void)?
+	public var emptyHandler: ((Bool) -> Void)?
 	private var model: CDBrushDrawingAsynModel!
 	private var bezierPathLayer = CAShapeLayer()
 	
@@ -45,7 +45,7 @@ class CDScrawlView: UIView {
 		setup()
 	}
 	
-	required init?(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
 		setup()
@@ -63,7 +63,7 @@ class CDScrawlView: UIView {
 		layer.addSublayer(bezierPathLayer)
 	}
 	
-	override func layoutSubviews() {
+	override public func layoutSubviews() {
 		print(#function, backingImage ?? "empty backing image")
 		imageView?.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
 		model.backingImageSize = bounds.size
@@ -77,30 +77,30 @@ class CDScrawlView: UIView {
 	}
 	
 	// MARK: - public
-	func resetAll() {
+	public func resetAll() {
 		model.resetAll()
 		updateViewFromModel()
 	}
 	
-	func resetBrushes() {
+	public func resetBrushes() {
 		model.resetBrushes()
 		updateViewFromModel()
 	}
 	
-	func combinedImage() -> UIImage {
+	public func combinedImage() -> UIImage {
 		return model.finalizedImage()
 	}
 	
 	// MARK: - touch
-	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+	override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		updateModel(touches, endPreviousLine: true)
 	}
 	
-	override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+	override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		updateModel(touches, endPreviousLine: false)
 	}
 	
-	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+	override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		updateModel(touches, endPreviousLine: true)
 	}
 	

@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EE432AE41FC65D3B005C08C4"
-               BuildableName = "Scrawl.app"
+               BlueprintIdentifier = "EE951BF61FCC16C700DE95F7"
+               BuildableName = "Scrawl.framework"
                BlueprintName = "Scrawl"
                ReferencedContainer = "container:Scrawl.xcodeproj">
             </BuildableReference>
@@ -29,12 +29,22 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EE951C0F1FCC172100DE95F7"
+               BuildableName = "ScrawlTests.xctest"
+               BlueprintName = "ScrawlTests"
+               ReferencedContainer = "container:Scrawl.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EE432AE41FC65D3B005C08C4"
-            BuildableName = "Scrawl.app"
+            BlueprintIdentifier = "EE951BF61FCC16C700DE95F7"
+            BuildableName = "Scrawl.framework"
             BlueprintName = "Scrawl"
             ReferencedContainer = "container:Scrawl.xcodeproj">
          </BuildableReference>
@@ -53,16 +63,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EE432AE41FC65D3B005C08C4"
-            BuildableName = "Scrawl.app"
+            BlueprintIdentifier = "EE951BF61FCC16C700DE95F7"
+            BuildableName = "Scrawl.framework"
             BlueprintName = "Scrawl"
             ReferencedContainer = "container:Scrawl.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -72,16 +81,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EE432AE41FC65D3B005C08C4"
-            BuildableName = "Scrawl.app"
+            BlueprintIdentifier = "EE951BF61FCC16C700DE95F7"
+            BuildableName = "Scrawl.framework"
             BlueprintName = "Scrawl"
             ReferencedContainer = "container:Scrawl.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
