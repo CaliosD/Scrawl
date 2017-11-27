@@ -59,9 +59,14 @@ class CDBrushDrawingAsynModel {
 	}
 	
 	// MARK: - sync
-	func reset() {
+	func resetAll() {
 		operationQueue.cancelAllOperations()
-		model.reset()
+		model.resetAll()
+	}
+	
+	func resetBrushes() {
+		operationQueue.cancelAllOperations()
+		model.resetBrushes()
 	}
 	
 	func addImageToCombinedImage(_ image: UIImage) {

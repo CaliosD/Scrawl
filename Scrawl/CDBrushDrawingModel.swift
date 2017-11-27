@@ -27,6 +27,7 @@ class CDBrushDrawingModel {
 	}
 	
 	private var bezierProvider: CDBrushBezierProvider!
+	private var backupImage: UIImage?
 	
 	init(imageSize: CGSize) {
 		backingImageSize = imageSize
@@ -44,13 +45,22 @@ class CDBrushDrawingModel {
 		bezierProvider.reset()
 	}
 	
-	func reset() {
+	func resetAll() {
 		combinedImage = nil
 		temporaryBrushBezierPath = nil
 		bezierProvider.reset()
 	}
 
+	func resetBrushes() {
+		combinedImage = backupImage
+		temporaryBrushBezierPath = nil
+		bezierProvider.reset()
+	}
+	
 	func addImageToCombinedImage(_ image: UIImage) {
+		if backupImage == nil {
+			backupImage = image
+		}
 		combinedImage = combinedImage(with: combinedImage, backingImage: image, bezierPath: nil, color: nil, size: backingImageSize)
 	}
 	
@@ -67,7 +77,7 @@ class CDBrushDrawingModel {
 		if drawingImage == nil && backingImage == nil && bezierPath == nil {
 			return nil
 		}
-		
+
 		let imageFrame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
 		UIGraphicsBeginImageContextWithOptions(imageFrame.size, false, 0)
 		

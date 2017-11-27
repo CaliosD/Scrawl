@@ -12,7 +12,6 @@
 		EE432AEE1FC65D3B005C08C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE432AEC1FC65D3B005C08C4 /* Main.storyboard */; };
 		EE432AF01FC65D3B005C08C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE432AEF1FC65D3B005C08C4 /* Assets.xcassets */; };
 		EE432AF31FC65D3B005C08C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE432AF11FC65D3B005C08C4 /* LaunchScreen.storyboard */; };
-		EE432AFB1FC65F1A005C08C4 /* ScrawlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE432AFA1FC65F1A005C08C4 /* ScrawlView.swift */; };
 		EE951BD41FCBE47B00DE95F7 /* CDBrushDrawingAsynModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE951BD31FCBE47B00DE95F7 /* CDBrushDrawingAsynModel.swift */; };
 		EEC9FEEA1FCA97B7001C3A9F /* UIBezierPath+CDWeightedPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC9FEE91FCA97B7001C3A9F /* UIBezierPath+CDWeightedPoint.swift */; };
 		EEC9FEED1FCAA559001C3A9F /* CDBrushBezierProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC9FEEC1FCAA559001C3A9F /* CDBrushBezierProvider.swift */; };
@@ -28,7 +27,6 @@
 		EE432AEF1FC65D3B005C08C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE432AF21FC65D3B005C08C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE432AF41FC65D3B005C08C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EE432AFA1FC65F1A005C08C4 /* ScrawlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrawlView.swift; sourceTree = "<group>"; };
 		EE951BD31FCBE47B00DE95F7 /* CDBrushDrawingAsynModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDBrushDrawingAsynModel.swift; sourceTree = "<group>"; };
 		EEC9FEE91FCA97B7001C3A9F /* UIBezierPath+CDWeightedPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+CDWeightedPoint.swift"; sourceTree = "<group>"; };
 		EEC9FEEC1FCAA559001C3A9F /* CDBrushBezierProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDBrushBezierProvider.swift; sourceTree = "<group>"; };
@@ -68,7 +66,6 @@
 			children = (
 				EE432AE81FC65D3B005C08C4 /* AppDelegate.swift */,
 				EE432AEA1FC65D3B005C08C4 /* ScrawlViewController.swift */,
-				EE432AFA1FC65F1A005C08C4 /* ScrawlView.swift */,
 				EED710A01FCBB75800DEA034 /* CDScrawlView.swift */,
 				EEC9FEEC1FCAA559001C3A9F /* CDBrushBezierProvider.swift */,
 				EED7109E1FCBA3E300DEA034 /* CDBrushDrawingModel.swift */,
@@ -161,7 +158,6 @@
 				EED710A11FCBB75800DEA034 /* CDScrawlView.swift in Sources */,
 				EE432AE91FC65D3B005C08C4 /* AppDelegate.swift in Sources */,
 				EEC9FEEA1FCA97B7001C3A9F /* UIBezierPath+CDWeightedPoint.swift in Sources */,
-				EE432AFB1FC65F1A005C08C4 /* ScrawlView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

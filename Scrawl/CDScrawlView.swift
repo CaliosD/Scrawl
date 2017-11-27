@@ -69,7 +69,7 @@ class CDScrawlView: UIView {
 		model.backingImageSize = bounds.size
 		
 		if let backingImage = backingImage {
-			imageView?.contentMode = .scaleAspectFit
+//			imageView?.contentMode = .scaleAspectFit
 			imageView?.image = backingImage
 			model.addImageToCombinedImage(backingImage)
 		}
@@ -77,8 +77,13 @@ class CDScrawlView: UIView {
 	}
 	
 	// MARK: - public
-	func reset() {
-		model.reset()
+	func resetAll() {
+		model.resetAll()
+		updateViewFromModel()
+	}
+	
+	func resetBrushes() {
+		model.resetBrushes()
 		updateViewFromModel()
 	}
 	
@@ -121,13 +126,12 @@ class CDScrawlView: UIView {
 				if strongSelf.imageView?.image != combinedImage {
 					strongSelf.imageView?.image = combinedImage
 				}				
+				strongSelf.isBrushEmpty = strongSelf.bezierPathLayer.path == nil
 			}
 			
 			if strongSelf.bezierPathLayer.path != temporaryBezierPath?.cgPath {
 				strongSelf.bezierPathLayer.path = temporaryBezierPath?.cgPath
 			}
-			
-			strongSelf.isBrushEmpty = strongSelf.bezierPathLayer.path == nil
 		}
 	}
 }
