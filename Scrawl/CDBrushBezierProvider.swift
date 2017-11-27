@@ -16,6 +16,23 @@ let CDTouchDistanceThreshold: CGFloat = 2.0
 
 let CDMaxPointIndex = 3
 
+protocol CDBrushBezierProviderDelegate {
+	/**
+	Provides the temporary signature bezier.
+	This can be displayed to represent the most recent points of the signature,
+	to give the feeling of real-time drawing but should not be permanently
+	drawn, as it will change as more points are added.
+	*/
+	func updatedTemporaryBrushBezier(with provider: CDBrushBezierProvider, temporaryBezier: UIBezierPath?)
+	
+	/**
+	Provides the finalized signature bezier.
+	When enough points are added to form a full bezier curve, this will be
+	returned as the finalized bezier and the temporary will reset.
+	*/
+	func generatedFinalizedBrushBezier(with provider: CDBrushBezierProvider, finalizedBezier: UIBezierPath?)
+}
+
 class CDBrushBezierProvider: NSObject {
 	var point0: CDWeightedPoint = .zero
 	var point1: CDWeightedPoint = .zero
@@ -23,6 +40,7 @@ class CDBrushBezierProvider: NSObject {
 	var point3: CDWeightedPoint = .zero
 	
 	var nextPointIndex: UInt = 0
+	var delegate: CDBrushBezierProviderDelegate?
 	
 	func addPointToBrushBezier(_ point: CGPoint) {
 		let isFirstPoint = (nextPointIndex == 0)
@@ -45,15 +63,18 @@ class CDBrushBezierProvider: NSObject {
 		}
 		
 		let newBezier = generateBezierPath(with: nextPointIndex - 1)
-		// TODO: add delegate to notify others
-		print(newBezier!)
+		updateTemporaryBezier(with: newBezier)
 	}
 	
 	func reset() {
 		nextPointIndex = 0
-		// TODO: add delegate to notify others
+		updateTemporaryBezier(with: nil)
 	}
 	
+	deinit {
+		delegate = nil
+	}
+
 	// MARK: - private
 	private func startNewLine(with point: CDWeightedPoint) {
 		setWeightedPoint(point, index: 0)
@@ -65,15 +86,17 @@ class CDBrushBezierProvider: NSObject {
 		nextPointIndex += 1
 	}
 	
-	private func finalizeBezierPathWithNextLine(_ startPoint: CGPoint) {
+	private func finalizeBezierPathWithNextLine(_ nextStartPoint: CGPoint) {
 		/*
 		Smooth the join between beziers by modifying the last point of the current bezier
 		to equal the average of the points either side of it.
 		*/
 		let touchPoint2 = weightedPoint(at: 2).point
-		var newPoint3 = CDWeightedPoint(point: CGPoint.average(touchPoint2, pointB: startPoint), weight: 0)
+		var newPoint3 = CDWeightedPoint(point: CGPoint.average(touchPoint2, pointB: nextStartPoint), weight: 0)
 		newPoint3.weight = brushWeightForLine(between: touchPoint2, pointB: newPoint3.point)
 		setWeightedPoint(newPoint3, index: 3)
+		
+		updateFinalizedBezier(with: generateBezierPath(with: 3))
 	}
 	
 	private func generateBezierPath(with pointIndex: UInt) -> UIBezierPath? {
@@ -119,6 +142,19 @@ class CDBrushBezierProvider: NSObject {
 			return point3
 		default:
 			return .zero
+		}
+	}
+	
+	// MARK: - delegate calls
+	private func updateTemporaryBezier(with bezier: UIBezierPath?) {
+		if let delegate = delegate {
+			delegate.updatedTemporaryBrushBezier(with: self, temporaryBezier: bezier)
+		}
+	}
+	
+	private func updateFinalizedBezier(with bezier: UIBezierPath?) {
+		if let delegate = delegate {
+			delegate.generatedFinalizedBrushBezier(with: self, finalizedBezier: bezier)
 		}
 	}
 	

@@ -10,24 +10,21 @@ import UIKit
 
 class ScrawlViewController: UIViewController {
 
-	@IBOutlet var scrawlView: ScrawlView!
+	@IBOutlet var scrawlView: CDScrawlView!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		
+//		let drawingView = CDScrawlView()
+		scrawlView.backingImage = #imageLiteral(resourceName: "test")
+		scrawlView.brushColor = .orange
+//		view.addSubview(drawingView)
 	}
 
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
-	}
-	
-	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-		
-	}
-
-	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-		
 	}
 }
 
