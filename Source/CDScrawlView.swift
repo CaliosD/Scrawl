@@ -93,15 +93,13 @@ public class CDScrawlView: UIView {
 	
 	// MARK: - touch
 	override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesBegan(touches, with: event)
 		updateModel(touches, endPreviousLine: true)
 	}
 	
 	override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesMoved(touches, with: event)
 		updateModel(touches, endPreviousLine: false)
-	}
-	
-	override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-		updateModel(touches, endPreviousLine: true)
 	}
 	
 	// MARK: - private

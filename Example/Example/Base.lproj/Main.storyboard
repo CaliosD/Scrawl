@@ -18,13 +18,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="RSm-qn-fG6" customClass="CDScrawlView" customModule="Scrawl">
-                                <rect key="frame" x="0.0" y="218.5" width="375" height="250"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="UPa-em-kz4">
+                                <rect key="frame" x="0.0" y="158" width="375" height="351"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p0p-Al-2Ig">
+                                        <rect key="frame" x="0.0" y="0.0" width="232" height="148"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test" translatesAutoresizingMaskIntoConstraints="NO" id="gPE-v4-I8B">
+                                                <rect key="frame" x="0.0" y="0.0" width="232" height="148"/>
+                                            </imageView>
+                                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="RSm-qn-fG6" customClass="CDScrawlView" customModule="Scrawl">
+                                                <rect key="frame" x="0.0" y="0.0" width="232" height="148"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="gPE-v4-I8B" secondAttribute="trailing" id="2WT-th-DN7"/>
+                                            <constraint firstAttribute="bottom" secondItem="gPE-v4-I8B" secondAttribute="bottom" id="2mS-dq-jVj"/>
+                                            <constraint firstItem="RSm-qn-fG6" firstAttribute="bottom" secondItem="gPE-v4-I8B" secondAttribute="bottom" id="8ka-j6-Rod"/>
+                                            <constraint firstItem="gPE-v4-I8B" firstAttribute="leading" secondItem="p0p-Al-2Ig" secondAttribute="leading" id="MQR-gN-WCF"/>
+                                            <constraint firstItem="RSm-qn-fG6" firstAttribute="leading" secondItem="gPE-v4-I8B" secondAttribute="leading" id="U1y-ZK-Ni1"/>
+                                            <constraint firstItem="RSm-qn-fG6" firstAttribute="trailing" secondItem="gPE-v4-I8B" secondAttribute="trailing" id="lvk-89-I5Q"/>
+                                            <constraint firstItem="RSm-qn-fG6" firstAttribute="top" secondItem="gPE-v4-I8B" secondAttribute="top" id="qIK-k5-3QU"/>
+                                            <constraint firstItem="gPE-v4-I8B" firstAttribute="top" secondItem="p0p-Al-2Ig" secondAttribute="top" id="tQ9-9g-hRC"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="250" id="CVf-dV-jzf"/>
+                                    <constraint firstItem="p0p-Al-2Ig" firstAttribute="top" secondItem="UPa-em-kz4" secondAttribute="top" id="2ui-cj-n6f"/>
+                                    <constraint firstItem="p0p-Al-2Ig" firstAttribute="leading" secondItem="UPa-em-kz4" secondAttribute="leading" id="FiG-f4-3GE"/>
+                                    <constraint firstAttribute="bottom" secondItem="p0p-Al-2Ig" secondAttribute="bottom" id="bFh-DK-Fup"/>
+                                    <constraint firstAttribute="trailing" secondItem="p0p-Al-2Ig" secondAttribute="trailing" id="hgN-qy-7nK"/>
                                 </constraints>
-                            </view>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="y5p-RX-8dw"/>
+                                    <outletCollection property="gestureRecognizers" destination="B8Z-Pp-xCB" appends="YES" id="yhA-iI-pXb"/>
+                                </connections>
+                            </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3uy-t8-VZA">
                                 <rect key="frame" x="320" y="20" width="39" height="30"/>
                                 <state key="normal" title="Reset"/>
@@ -32,25 +64,46 @@
                                     <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="68A-pD-hfC"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1j-39-WXP">
+                                <rect key="frame" x="278" y="20" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="save:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d0j-9s-dQz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3uy-t8-VZA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="0mC-sx-BQY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UPa-em-kz4" secondAttribute="bottom" constant="158" id="Kw1-eD-4RQ"/>
                             <constraint firstItem="3uy-t8-VZA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="LVd-Nr-seN"/>
-                            <constraint firstItem="RSm-qn-fG6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="R04-ux-LbX"/>
-                            <constraint firstItem="RSm-qn-fG6" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="R6Y-d1-Bm3"/>
-                            <constraint firstItem="RSm-qn-fG6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Veb-Wv-Xv7"/>
+                            <constraint firstAttribute="trailing" secondItem="UPa-em-kz4" secondAttribute="trailing" id="PZ4-IH-7iZ"/>
+                            <constraint firstItem="UPa-em-kz4" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aw3-1V-8K6"/>
+                            <constraint firstItem="UPa-em-kz4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cXx-kE-USc"/>
+                            <constraint firstItem="3uy-t8-VZA" firstAttribute="leading" secondItem="f1j-39-WXP" secondAttribute="trailing" constant="8" id="qpy-Yj-3f9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3uy-t8-VZA" secondAttribute="trailing" constant="16" id="y4j-h5-8Ya"/>
+                            <constraint firstItem="3uy-t8-VZA" firstAttribute="bottom" secondItem="f1j-39-WXP" secondAttribute="bottom" id="y8n-jv-PUU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="contentView" destination="p0p-Al-2Ig" id="AYV-Xa-QV4"/>
+                        <outlet property="imageView" destination="gPE-v4-I8B" id="pir-Tn-xmv"/>
                         <outlet property="resetButton" destination="3uy-t8-VZA" id="MwD-GR-nEM"/>
                         <outlet property="scrawlView" destination="RSm-qn-fG6" id="5TC-5V-0oe"/>
+                        <outlet property="scrollView" destination="UPa-em-kz4" id="Q5g-dN-fnT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <rotationGestureRecognizer id="B8Z-Pp-xCB">
+                    <connections>
+                        <action selector="rotate:" destination="BYZ-38-t0r" id="vC0-MV-bOq"/>
+                    </connections>
+                </rotationGestureRecognizer>
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="test" width="232" height="148"/>
+    </resources>
 </document>

@@ -28,6 +28,10 @@ class CDBrushDrawingModel {
 	
 	private var bezierProvider: CDBrushBezierProvider!
 	private var backupImage: UIImage?
+		
+	convenience init() {
+		self.init(imageSize: .zero)
+	}
 	
 	init(imageSize: CGSize) {
 		backingImageSize = imageSize

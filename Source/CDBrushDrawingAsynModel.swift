@@ -26,6 +26,10 @@ class CDBrushDrawingAsynModel {
 		}
 	}
 	
+	convenience init() {
+		self.init(imageSize: .zero)
+	}
+	
 	init(imageSize: CGSize) {
 		model = CDBrushDrawingModel(imageSize: imageSize)
 		

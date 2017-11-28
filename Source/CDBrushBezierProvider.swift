@@ -43,6 +43,8 @@ class CDBrushBezierProvider: NSObject {
 	var delegate: CDBrushBezierProviderDelegate?
 	
 	func addPointToBrushBezier(_ point: CGPoint) {
+		print(#function, "isFirstPoint: \(nextPointIndex == 0)")
+		
 		let isFirstPoint = (nextPointIndex == 0)
 		if isFirstPoint {
 			startNewLine(with: CDWeightedPoint(point: point, weight: CDDotBrushWeight))
@@ -77,16 +79,22 @@ class CDBrushBezierProvider: NSObject {
 
 	// MARK: - private
 	private func startNewLine(with point: CDWeightedPoint) {
+		print(#function)
+		
 		setWeightedPoint(point, index: 0)
 		nextPointIndex = 1
 	}
 	
 	private func addWeightedPointToLine(_ point: CDWeightedPoint) {
+		print(#function)
+		
 		setWeightedPoint(point, index: nextPointIndex)
 		nextPointIndex += 1
 	}
 	
 	private func finalizeBezierPathWithNextLine(_ nextStartPoint: CGPoint) {
+		print(#function, nextStartPoint)
+		
 		/*
 		Smooth the join between beziers by modifying the last point of the current bezier
 		to equal the average of the points either side of it.
