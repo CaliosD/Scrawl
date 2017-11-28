@@ -113,9 +113,9 @@ public class CDScrawlView: UIView {
 		
 		if endPreviousLine {
 			model.asyncEndCurrentLine()
-		} else {
-			model.asyncUpdate(with: point!)
 		}
+		
+		model.asyncUpdate(with: point!)
 		updateViewFromModel()
 	}
 	
