@@ -102,15 +102,20 @@ public class CDScrawlView: UIView {
 		updateModel(touches, endPreviousLine: false)
 	}
 	
+	override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesMoved(touches, with: event)
+		updateModel(touches, endPreviousLine: true)
+	}
+	
 	// MARK: - private
 	private func updateModel(_ touches: Set<UITouch>, endPreviousLine: Bool) {
 		let point = touches.first?.location(in: self)
 		
 		if endPreviousLine {
 			model.asyncEndCurrentLine()
+		} else {
+			model.asyncUpdate(with: point!)
 		}
-		
-		model.asyncUpdate(with: point!)
 		updateViewFromModel()
 	}
 	
