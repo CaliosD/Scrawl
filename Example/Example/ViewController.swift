@@ -23,19 +23,19 @@ class ViewController: UIViewController {
 		updateScrollViewGesture()
 		
 		scrawlView.backingImage = #imageLiteral(resourceName: "test")
-		scrawlView.brushColor = .orange
+		scrawlView.brushColor = .cyan
 		scrawlView.emptyHandler = { isEmpty in
 			self.resetButton.isEnabled = !isEmpty
 		}
 	}
 
 	private func updateScrollViewGesture() {
-		for gesture in scrollView.gestureRecognizers! {
-			if gesture is UIPanGestureRecognizer {
-				let pan = gesture as! UIPanGestureRecognizer
-				pan.minimumNumberOfTouches = 2
-			}
-		}
+//		for gesture in scrollView.gestureRecognizers! {
+//			if gesture is UIPanGestureRecognizer {
+//				let pan = gesture as! UIPanGestureRecognizer
+//				pan.minimumNumberOfTouches = 2
+//			}
+//		}
 	}
 	
 	@IBAction func reset(_ sender: Any) {
