@@ -101,11 +101,11 @@ public class CDScrawlView: UIView {
 		super.touchesMoved(touches, with: event)
 		updateModel(touches, endPreviousLine: false)
 	}
-	
-	override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-		super.touchesMoved(touches, with: event)
-		updateModel(touches, endPreviousLine: true)
-	}
+//
+//	override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//		super.touchesMoved(touches, with: event)
+//		updateModel(touches, endPreviousLine: true)
+//	}
 	
 	// MARK: - private
 	private func updateModel(_ touches: Set<UITouch>, endPreviousLine: Bool) {
@@ -130,10 +130,10 @@ public class CDScrawlView: UIView {
 					strongSelf.imageView?.image = combinedImage
 				}				
 				strongSelf.isBrushEmpty = strongSelf.bezierPathLayer.path == nil
-			}
-			
-			if strongSelf.bezierPathLayer.path != temporaryBezierPath?.cgPath {
-				strongSelf.bezierPathLayer.path = temporaryBezierPath?.cgPath
+				
+				if strongSelf.bezierPathLayer.path != temporaryBezierPath?.cgPath {
+					strongSelf.bezierPathLayer.path = temporaryBezierPath?.cgPath
+				}
 			}
 		}
 	}
