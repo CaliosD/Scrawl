@@ -20,9 +20,13 @@ public class CDScrawlView: UIView {
 	
 	public var brushColor: UIColor = .black {
 		didSet {
-			model.brushColor = brushColor
-			bezierPathLayer.strokeColor = brushColor.cgColor
-			bezierPathLayer.fillColor = brushColor.cgColor
+			if brushColor != oldValue {
+				model.asyncEndCurrentLine()
+				
+				model.brushColor = brushColor
+				bezierPathLayer.strokeColor = brushColor.cgColor
+				bezierPathLayer.fillColor = brushColor.cgColor
+			}
 		}
 	}
 	
@@ -101,11 +105,10 @@ public class CDScrawlView: UIView {
 		super.touchesMoved(touches, with: event)
 		updateModel(touches, endPreviousLine: false)
 	}
-//
-//	override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//		super.touchesMoved(touches, with: event)
-//		updateModel(touches, endPreviousLine: true)
-//	}
+
+	override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		super.touchesMoved(touches, with: event)
+	}
 	
 	// MARK: - private
 	private func updateModel(_ touches: Set<UITouch>, endPreviousLine: Bool) {
@@ -128,7 +131,7 @@ public class CDScrawlView: UIView {
 			DispatchQueue.main.async {
 				if strongSelf.imageView?.image != combinedImage {
 					strongSelf.imageView?.image = combinedImage
-				}				
+				}
 				strongSelf.isBrushEmpty = strongSelf.bezierPathLayer.path == nil
 				
 				if strongSelf.bezierPathLayer.path != temporaryBezierPath?.cgPath {

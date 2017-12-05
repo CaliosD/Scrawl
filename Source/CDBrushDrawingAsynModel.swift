@@ -12,7 +12,7 @@ typealias CDBrushDrawingOutput = (UIImage?, UIBezierPath?) -> Void
 
 class CDBrushDrawingAsynModel {
 	var model: CDBrushDrawingModel!
-	var operationQueue: OperationQueue!
+	var operationQueue = OperationQueue()
 	var brushColor: UIColor = .black {
 		didSet {
 			model.brushColor = brushColor
@@ -33,7 +33,6 @@ class CDBrushDrawingAsynModel {
 	init(imageSize: CGSize) {
 		model = CDBrushDrawingModel(imageSize: imageSize)
 		
-		operationQueue = OperationQueue()
 		operationQueue.maxConcurrentOperationCount = 1
 	}
 	
@@ -51,13 +50,15 @@ class CDBrushDrawingAsynModel {
 	}
 	
 	func asyncGetOutput(output: @escaping CDBrushDrawingOutput) {
-		let currentQueue = OperationQueue()
+		let currentQueue = OperationQueue.current
 		
 		operationQueue.addOperation {
 			let combinedImage = self.model.combinedImage
 			let temporaryBezierPath = self.model.temporaryBrushBezierPath
-			currentQueue.addOperation {
-				output(combinedImage, temporaryBezierPath)
+			if let currentQueue = currentQueue {
+				currentQueue.addOperation {
+					output(combinedImage, temporaryBezierPath)
+				}
 			}
 		}
 	}
