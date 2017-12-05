@@ -11,9 +11,14 @@ import Foundation
 class CDBrushPathDrawingModel {
 	var brushColor: UIColor = .black
 	var temporaryBrushBezierPath: UIBezierPath?
-	var existingPathImage: UIImage?
+	var existingPathImage: UIImage? {
+		didSet {
+			isPathEmpty = existingPathImage == nil
+		}
+	}
 	var historyPaths: [UIBezierPath] = []
 	var backingImageSize: CGSize = .zero
+	var isPathEmpty = false
 	
 	private var bezierProvider: CDBrushBezierProvider!
 	

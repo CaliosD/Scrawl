@@ -25,6 +25,7 @@ class CDBrushPathDrawingAsynModel {
 			}
 		}
 	}
+	var isPathEmpty = false
 	
 	convenience init() {
 		self.init(imageSize: .zero)
@@ -52,6 +53,7 @@ class CDBrushPathDrawingAsynModel {
 		drawingQueue.async {
 			let existingPathImage = self.model.existingPathImage
 			let temporaryBrushBezierPath = self.model.temporaryBrushBezierPath
+			self.isPathEmpty = self.model.isPathEmpty
 			DispatchQueue.main.async {
 				output(existingPathImage, temporaryBrushBezierPath)
 			}

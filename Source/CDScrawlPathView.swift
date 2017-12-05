@@ -24,10 +24,10 @@ public class CDScrawlPathView: UIView {
 		}
 	}
 	
-	var isBrushEmpty = false {
+	var isPathEmpty = false {
 		didSet {
 			if let emptyHandler = emptyHandler {
-				emptyHandler(isBrushEmpty)
+				emptyHandler(isPathEmpty)
 			}
 		}
 	}
@@ -155,7 +155,7 @@ public class CDScrawlPathView: UIView {
 					strongSelf.bezierPathLayer.path = temporaryBezierPath?.cgPath
 					strongSelf.lastPath = temporaryBezierPath
 				}
-				strongSelf.isBrushEmpty = strongSelf.bezierPathLayer.path == nil
+				strongSelf.isPathEmpty = strongSelf.model.isPathEmpty
 			}
 		}
 	}
