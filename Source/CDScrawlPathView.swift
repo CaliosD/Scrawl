@@ -14,11 +14,12 @@ public class CDScrawlPathView: UIView {
 	public var brushColor: UIColor = .black {
 		didSet {
 			if brushColor != oldValue {
-				model.asyncEndCurrentLine(oldValue)
+				bezierPathLayer.strokeColor = oldValue.cgColor
+				bezierPathLayer.fillColor = oldValue.cgColor
 				
+				lastPath = nil
+				model.asyncEndCurrentLine(oldValue)
 				model.brushColor = brushColor
-				bezierPathLayer.strokeColor = brushColor.cgColor
-				bezierPathLayer.fillColor = brushColor.cgColor
 			}
 		}
 	}
@@ -102,17 +103,27 @@ public class CDScrawlPathView: UIView {
 	
 	// MARK: - touch
 	override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		print(#function)
 		super.touchesBegan(touches, with: event)
 		updateModel(touches, endPreviousLine: true)
 	}
 	
 	override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+		print(#function)
 		super.touchesMoved(touches, with: event)
 		updateModel(touches, endPreviousLine: false)
 	}
 	
+	public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+		print(#function)
+		super.touchesEnded(touches, with: event)
+		
+		
+	}
+	
 	// MARK: - private
 	private func updateModel(_ touches: Set<UITouch>, endPreviousLine: Bool) {
+		print(#function)
 		let point = touches.first?.location(in: self)
 		
 		if endPreviousLine {
@@ -124,6 +135,7 @@ public class CDScrawlPathView: UIView {
 	}
 	
 	private func updateViewFromModel() {
+		print(#function)
 		model.asyncGetOutput { [weak self](existingImage, temporaryBezierPath) in
 			guard let strongSelf = self else {
 				return
@@ -136,6 +148,8 @@ public class CDScrawlPathView: UIView {
 					strongSelf.pathImageView?.image = existingImage
 				}
 				if strongSelf.bezierPathLayer.path != temporaryBezierPath?.cgPath {
+					strongSelf.bezierPathLayer.fillColor = strongSelf.brushColor.cgColor
+					strongSelf.bezierPathLayer.strokeColor = strongSelf.brushColor.cgColor
 					strongSelf.bezierPathLayer.path = temporaryBezierPath?.cgPath
 					strongSelf.lastPath = temporaryBezierPath
 				}
