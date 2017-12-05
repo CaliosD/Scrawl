@@ -33,7 +33,7 @@ class CDBrushDrawingAsynModel {
 	init(imageSize: CGSize) {
 		model = CDBrushDrawingModel(imageSize: imageSize)
 		
-		operationQueue.maxConcurrentOperationCount = 1
+		operationQueue.maxConcurrentOperationCount = 2
 	}
 	
 	// MARK: - async

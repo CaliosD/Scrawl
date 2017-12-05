@@ -28,7 +28,7 @@ class ViewController: UIViewController {
 	@IBOutlet var scrollView: UIScrollView!
 	@IBOutlet var contentView: UIView!
 	@IBOutlet var imageView: UIImageView!
-	@IBOutlet var scrawlView: CDScrawlView!
+	@IBOutlet var scrawlView: CDScrawlPathView!
 	@IBOutlet var resetButton: UIButton!
 
 	private let colors = Pallete.all()
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
 		
 		updateScrollViewGesture()
 		
-		scrawlView.backingImage = #imageLiteral(resourceName: "test")
+		scrawlView.backingImage = #imageLiteral(resourceName: "soul")
 		scrawlView.brushColor = .black
 		scrawlView.emptyHandler = { isEmpty in
 			self.resetButton.isEnabled = !isEmpty
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
 	}
 	
 	@IBAction func reset(_ sender: Any) {
-		scrawlView.resetBrushes()
+		scrawlView.resetAllPaths()
 	}
 	
 	@IBAction func changeColor(_ sender: UIButton) {
@@ -64,8 +64,9 @@ class ViewController: UIViewController {
 	}
 	
 	@IBAction func save(_ sender: Any) {
-		let resultImage = scrawlView.combinedImage()
-		UIImageWriteToSavedPhotosAlbum(resultImage, self, nil, nil)
+		if let resultImage = scrawlView.combinedImage() {
+			UIImageWriteToSavedPhotosAlbum(resultImage, self, nil, nil)
+		}
 	}
 	
 	@IBAction func rotate(_ sender: UIRotationGestureRecognizer) {

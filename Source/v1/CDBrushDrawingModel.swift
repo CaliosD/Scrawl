@@ -117,8 +117,3 @@ extension CDBrushDrawingModel: CDBrushBezierProviderDelegate {
 	}
 }
 
-extension CGSize {
-	func isAvailable() -> Bool {
-		return width > 0 && height > 0
-	}
-}

@@ -73,7 +73,6 @@ public class CDScrawlView: UIView {
 		model.backingImageSize = bounds.size
 		
 		if let backingImage = backingImage {
-//			imageView?.contentMode = .scaleAspectFit
 			imageView?.image = backingImage
 			model.addImageToCombinedImage(backingImage)
 		}
@@ -104,10 +103,6 @@ public class CDScrawlView: UIView {
 	override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 		super.touchesMoved(touches, with: event)
 		updateModel(touches, endPreviousLine: false)
-	}
-
-	override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-		super.touchesMoved(touches, with: event)
 	}
 	
 	// MARK: - private

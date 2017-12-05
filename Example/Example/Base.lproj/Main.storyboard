@@ -18,21 +18,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="UPa-em-kz4">
-                                <rect key="frame" x="0.0" y="158" width="375" height="351"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3uy-t8-VZA">
+                                <rect key="frame" x="320" y="20" width="39" height="30"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="68A-pD-hfC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3v-aT-X8q">
+                                <rect key="frame" x="21" y="20" width="37" height="30"/>
+                                <state key="normal" title="Color"/>
+                                <connections>
+                                    <action selector="changeColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K1U-mg-wGy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1j-39-WXP">
+                                <rect key="frame" x="278" y="20" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="save:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d0j-9s-dQz"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" maximumZoomScale="3" translatesAutoresizingMaskIntoConstraints="NO" id="UPa-em-kz4">
+                                <rect key="frame" x="0.0" y="64" width="375" height="539"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p0p-Al-2Ig">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test" translatesAutoresizingMaskIntoConstraints="NO" id="gPE-v4-I8B">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="375" id="R2c-C1-yvI"/>
-                                                    <constraint firstAttribute="height" constant="250" id="sgw-JJ-t83"/>
-                                                </constraints>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soul" translatesAutoresizingMaskIntoConstraints="NO" id="gPE-v4-I8B">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
                                             </imageView>
-                                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSm-qn-fG6" customClass="CDScrawlView" customModule="Scrawl">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSm-qn-fG6" customClass="CDScrawlPathView" customModule="Scrawl">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
@@ -55,55 +72,32 @@
                                     <constraint firstItem="p0p-Al-2Ig" firstAttribute="leading" secondItem="UPa-em-kz4" secondAttribute="leading" id="FiG-f4-3GE"/>
                                     <constraint firstAttribute="bottom" secondItem="p0p-Al-2Ig" secondAttribute="bottom" id="bFh-DK-Fup"/>
                                     <constraint firstAttribute="trailing" secondItem="p0p-Al-2Ig" secondAttribute="trailing" id="hgN-qy-7nK"/>
+                                    <constraint firstItem="gPE-v4-I8B" firstAttribute="height" secondItem="UPa-em-kz4" secondAttribute="height" id="hsP-YB-7Tl"/>
+                                    <constraint firstItem="gPE-v4-I8B" firstAttribute="width" secondItem="UPa-em-kz4" secondAttribute="width" id="i3L-fG-l1f"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="y5p-RX-8dw"/>
                                     <outletCollection property="gestureRecognizers" destination="B8Z-Pp-xCB" appends="YES" id="yhA-iI-pXb"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3uy-t8-VZA">
-                                <rect key="frame" x="320" y="20" width="39" height="30"/>
-                                <state key="normal" title="Reset"/>
-                                <connections>
-                                    <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="68A-pD-hfC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3v-aT-X8q">
-                                <rect key="frame" x="21" y="20" width="37" height="30"/>
-                                <state key="normal" title="Color"/>
-                                <connections>
-                                    <action selector="changeColor:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K1U-mg-wGy"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1j-39-WXP">
-                                <rect key="frame" x="-22" y="20" width="34" height="30"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="save:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d0j-9s-dQz"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3uy-t8-VZA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="0mC-sx-BQY"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T3v-aT-X8q" secondAttribute="trailing" constant="20" symbolic="YES" id="BSd-pj-gnQ"/>
                             <constraint firstItem="T3v-aT-X8q" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Bq8-Ig-tAI"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UPa-em-kz4" secondAttribute="bottom" constant="158" id="Kw1-eD-4RQ"/>
+                            <constraint firstItem="f1j-39-WXP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="278" id="FVa-Yp-tcb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UPa-em-kz4" secondAttribute="bottom" constant="64" id="Kw1-eD-4RQ"/>
                             <constraint firstItem="3uy-t8-VZA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" symbolic="YES" id="LVd-Nr-seN"/>
                             <constraint firstAttribute="trailing" secondItem="UPa-em-kz4" secondAttribute="trailing" id="PZ4-IH-7iZ"/>
                             <constraint firstItem="UPa-em-kz4" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aw3-1V-8K6"/>
                             <constraint firstItem="UPa-em-kz4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cXx-kE-USc"/>
                             <constraint firstItem="T3v-aT-X8q" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="21" id="mqZ-NX-4Sa"/>
-                            <constraint firstItem="3uy-t8-VZA" firstAttribute="leading" secondItem="f1j-39-WXP" secondAttribute="trailing" constant="8" id="qpy-Yj-3f9"/>
+                            <constraint firstItem="3uy-t8-VZA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="f1j-39-WXP" secondAttribute="trailing" symbolic="YES" id="qpy-Yj-3f9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3uy-t8-VZA" secondAttribute="trailing" constant="16" id="y4j-h5-8Ya"/>
                             <constraint firstItem="3uy-t8-VZA" firstAttribute="bottom" secondItem="f1j-39-WXP" secondAttribute="bottom" id="y8n-jv-PUU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="f1j-39-WXP"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="contentView" destination="p0p-Al-2Ig" id="AYV-Xa-QV4"/>
@@ -123,6 +117,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="test" width="232" height="148"/>
+        <image name="soul" width="426" height="757"/>
     </resources>
 </document>
