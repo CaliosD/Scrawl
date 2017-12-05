@@ -13,12 +13,12 @@ public class CDScrawlPathView: UIView {
 	public var backingImage: UIImage?
 	public var brushColor: UIColor = .black {
 		didSet {
-			if brushColor != oldValue {
-				bezierPathLayer.strokeColor = oldValue.cgColor
-				bezierPathLayer.fillColor = oldValue.cgColor
-				
+			bezierPathLayer.strokeColor = model.brushColor.cgColor
+			bezierPathLayer.fillColor = model.brushColor.cgColor
+			
+			if brushColor != model.brushColor {
 				lastPath = nil
-				model.asyncEndCurrentLine(oldValue)
+				model.asyncEndCurrentLine(model.brushColor)
 				model.brushColor = brushColor
 			}
 		}
@@ -113,12 +113,13 @@ public class CDScrawlPathView: UIView {
 		super.touchesMoved(touches, with: event)
 		updateModel(touches, endPreviousLine: false)
 	}
-	
+
 	public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
 		print(#function)
 		super.touchesEnded(touches, with: event)
 		
-		
+		model.asyncEndCurrentLine(model.brushColor)
+		updateViewFromModel()
 	}
 	
 	// MARK: - private
@@ -148,8 +149,9 @@ public class CDScrawlPathView: UIView {
 					strongSelf.pathImageView?.image = existingImage
 				}
 				if strongSelf.bezierPathLayer.path != temporaryBezierPath?.cgPath {
-					strongSelf.bezierPathLayer.fillColor = strongSelf.brushColor.cgColor
-					strongSelf.bezierPathLayer.strokeColor = strongSelf.brushColor.cgColor
+					// use the same color for last path when color changed.
+					strongSelf.bezierPathLayer.fillColor = strongSelf.model.brushColor.cgColor
+					strongSelf.bezierPathLayer.strokeColor = strongSelf.model.brushColor.cgColor
 					strongSelf.bezierPathLayer.path = temporaryBezierPath?.cgPath
 					strongSelf.lastPath = temporaryBezierPath
 				}
