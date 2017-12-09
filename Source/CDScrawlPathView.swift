@@ -77,8 +77,8 @@ public class CDScrawlPathView: UIView {
 
 	public func combinedImage() -> UIImage? {
 		if let backingImage = backingImage {
-			let width = frame.width //backingImage.size.width * backingImage.scale
-			let height = frame.height //backingImage.size.height * backingImage.scale
+			let width = bounds.width
+			let height = bounds.height
 			UIGraphicsBeginImageContextWithOptions(CGSize(width: width, height: height), false, 0)
 			let imageFrame = CGRect(x: 0, y: 0, width: width, height: height)
 			backingImage.draw(in: imageFrame)
@@ -103,7 +103,8 @@ public class CDScrawlPathView: UIView {
 	
 	// MARK: - touch
 	override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-		print(#function)
+		print(#function, touches.first!.description)
+		
 		super.touchesBegan(touches, with: event)
 		updateModel(touches, endPreviousLine: true)
 	}
