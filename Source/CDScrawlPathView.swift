@@ -17,7 +17,7 @@ public class CDScrawlPathView: UIView {
 			bezierPathLayer.fillColor = model.brushColor.cgColor
 			
 			if brushColor != model.brushColor {
-				lastPath = nil
+				temporaryPath = nil
 				model.asyncEndCurrentLine(model.brushColor)
 				model.brushColor = brushColor
 			}
@@ -35,7 +35,9 @@ public class CDScrawlPathView: UIView {
 	public var emptyHandler: ((Bool) -> Void)?
 	private var model: CDBrushPathDrawingAsynModel!
 	private var bezierPathLayer = CAShapeLayer()
-	private var lastPath: UIBezierPath?
+	private var temporaryPath: UIBezierPath?
+	private var currentTouch: UITouch?
+	private var shouldCancelTouch: Bool = false
 	
 	init(frame: CGRect, presetImage: UIImage? = nil) {
 		super.init(frame: frame)
@@ -86,7 +88,7 @@ public class CDScrawlPathView: UIView {
 			if let pathImage = model.finalizedPathImage() {
 				pathImage.draw(in: imageFrame)
 			}
-			if let lastPath = lastPath {
+			if let lastPath = temporaryPath {
 				brushColor.setStroke()
 				brushColor.setFill()
 				
@@ -103,29 +105,73 @@ public class CDScrawlPathView: UIView {
 	
 	// MARK: - touch
 	override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-		print(#function, touches.first!.description)
+//		print(#function, touches.count, touches.first!.location(in: self))
 		
 		super.touchesBegan(touches, with: event)
-		updateModel(touches, endPreviousLine: true)
+		shouldCancelTouch = shouldCancel(touches)
+		
+		currentTouch = touches.first!
+
+//		print("▶️", shouldCancelTouch)
+		if !shouldCancelTouch {
+			updateModel(touches, endPreviousLine: true)
+		}
 	}
 	
 	override public func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-		print(#function)
+//		print(#function, touches.first!.location(in: self))
 		super.touchesMoved(touches, with: event)
-		updateModel(touches, endPreviousLine: false)
+
+		if !shouldCancelTouch {
+			updateModel(touches, endPreviousLine: false)
+		}
 	}
 
 	public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-		print(#function)
+//		print(#function)
 		super.touchesEnded(touches, with: event)
 		
-		model.asyncEndCurrentLine(model.brushColor)
-		updateViewFromModel()
+		if !shouldCancelTouch {
+			shouldCancelTouch = true
+			
+			model.asyncEndCurrentLine(model.brushColor)
+			updateViewFromModel()
+		}
+	}
+	
+	public override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+//		print(#function, "⚡️ should cancel", temporaryPath as Any)
+		super.touchesCancelled(touches, with: event)
+		
+		shouldCancelTouch = true
+		
+		if let temporaryPath = temporaryPath {
+			bezierPathLayer.fillColor = UIColor.orange.cgColor
+			bezierPathLayer.strokeColor = UIColor.orange.cgColor
+			bezierPathLayer.path = temporaryPath.cgPath
+			
+			model.asyncEndCurrentLine(UIColor.clear)
+			updateViewFromModel()
+		}
+		temporaryPath = nil
+
+		bezierPathLayer.fillColor = brushColor.cgColor
+		bezierPathLayer.strokeColor = brushColor.cgColor
+	}
+
+	private func shouldCancel(_ touches: Set<UITouch>) -> Bool {
+		let isMultipleTouch = touches.count > 1
+		if let currentTouch = currentTouch {
+			// If two touches come hand in hand, treat them as multiple touch.
+//			print("🚀: \(abs(currentTouch.timestamp - touches.first!.timestamp))")
+			return (currentTouch != touches.first! && abs(currentTouch.timestamp - touches.first!.timestamp) < 0.05) || isMultipleTouch
+		}
+		return isMultipleTouch
 	}
 	
 	// MARK: - private
 	private func updateModel(_ touches: Set<UITouch>, endPreviousLine: Bool) {
-		print(#function)
+//		print(#function)
 		let point = touches.first?.location(in: self)
 		
 		if endPreviousLine {
@@ -137,14 +183,14 @@ public class CDScrawlPathView: UIView {
 	}
 	
 	private func updateViewFromModel() {
-		print(#function)
+//		print(#function)
 		model.asyncGetOutput { [weak self](existingImage, temporaryBezierPath) in
 			guard let strongSelf = self else {
 				return
 			}
 			
 			DispatchQueue.main.async {
-				strongSelf.lastPath = nil
+				strongSelf.temporaryPath = nil
 				
 				if strongSelf.pathImageView?.image != existingImage {
 					strongSelf.pathImageView?.image = existingImage
@@ -154,7 +200,7 @@ public class CDScrawlPathView: UIView {
 					strongSelf.bezierPathLayer.fillColor = strongSelf.model.brushColor.cgColor
 					strongSelf.bezierPathLayer.strokeColor = strongSelf.model.brushColor.cgColor
 					strongSelf.bezierPathLayer.path = temporaryBezierPath?.cgPath
-					strongSelf.lastPath = temporaryBezierPath
+					strongSelf.temporaryPath = temporaryBezierPath
 				}
 				strongSelf.isPathEmpty = strongSelf.model.isPathEmpty
 			}

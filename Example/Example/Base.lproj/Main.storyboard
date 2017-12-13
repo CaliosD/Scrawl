@@ -48,7 +48,7 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soul" translatesAutoresizingMaskIntoConstraints="NO" id="gPE-v4-I8B">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
                                             </imageView>
-                                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSm-qn-fG6" customClass="CDScrawlPathView" customModule="Scrawl">
+                                            <view multipleTouchEnabled="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="RSm-qn-fG6" customClass="CDScrawlPathView" customModule="Scrawl">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
