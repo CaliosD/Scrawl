@@ -171,7 +171,7 @@ class CDBrushBezierProvider: NSObject {
 		let length = CGPoint.distance(pointA, pointB: pointB)
 		
 		// The is the maximum length that will vary weight. Anything higher will return the same weight.
-		let maxLengthRange: CGFloat = 50.0
+		let maxLengthRange: CGFloat = 20.0
 		
 		/*
 		These are based on having a minimum line thickness of 2.0 and maximum of 7, linearly over line lengths 0-maxLengthRange. They fit into a typical linear equation: y = mx + c
@@ -179,7 +179,7 @@ class CDBrushBezierProvider: NSObject {
 		Note: Only the points of the two parallel bezier curves will be at least as thick as the constant. The bezier curves themselves could still be drawn with sharp angles, meaning there is no true 'minimum thickness' of the signature.
 		*/
 		let gradient: CGFloat = 0.1
-		let constant: CGFloat = 2.0
+		let constant: CGFloat = 1.0
 		
 		var inversedLength = maxLengthRange - length
 		inversedLength = max(0, inversedLength)
