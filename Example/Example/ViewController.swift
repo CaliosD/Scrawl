@@ -39,7 +39,7 @@ class ViewController: UIViewController {
 		updateScrollViewGesture()
 		
 		scrawlView.backingImage = #imageLiteral(resourceName: "soul")
-		scrawlView.brushColor = .black
+		scrawlView.brushColor = .black //UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.6)
 		scrawlView.emptyHandler = { isEmpty in
 			self.resetButton.isEnabled = !isEmpty
 		}

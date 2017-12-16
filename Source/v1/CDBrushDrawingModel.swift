@@ -83,7 +83,7 @@ class CDBrushDrawingModel {
 		}
 
 		let imageFrame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
-		UIGraphicsBeginImageContextWithOptions(imageFrame.size, false, 0)
+		UIGraphicsBeginImageContextWithOptions(imageFrame.size, true, 0)
 		
 		if let drawingImage = drawingImage {
 			drawingImage.draw(in: imageFrame)

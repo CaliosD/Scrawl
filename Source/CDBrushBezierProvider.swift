@@ -9,7 +9,7 @@
 import UIKit
 
 /// The weight of a signature-styled dot.
-let CDDotBrushWeight: CGFloat = 3.0
+let CDDotBrushWeight: CGFloat = 2.0
 
 /// If a new point is added without being at least this distance from the previous point, it will be ignored.
 let CDTouchDistanceThreshold: CGFloat = 2.0
