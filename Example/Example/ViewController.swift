@@ -38,20 +38,20 @@ class ViewController: UIViewController {
 		
 		updateScrollViewGesture()
 		
-		scrawlView.backingImage = #imageLiteral(resourceName: "soul")
-		scrawlView.brushColor = .black//UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.6)
+//		scrawlView.backingImage = #imageLiteral(resourceName: "soul")
+		scrawlView.brushColor = .black
 		scrawlView.emptyHandler = { isEmpty in
 			self.resetButton.isEnabled = !isEmpty
 		}
 	}
 
 	private func updateScrollViewGesture() {
-//		for gesture in scrollView.gestureRecognizers! {
-//			if gesture is UIPanGestureRecognizer {
-//				let pan = gesture as! UIPanGestureRecognizer
-//				pan.minimumNumberOfTouches = 2
-//			}
-//		}
+		for gesture in scrollView.gestureRecognizers! {
+			if gesture is UIPanGestureRecognizer {
+				let pan = gesture as! UIPanGestureRecognizer
+				pan.minimumNumberOfTouches = 2
+			}
+		}
 	}
 	
 	@IBAction func reset(_ sender: Any) {
@@ -73,6 +73,23 @@ class ViewController: UIViewController {
 		imageView.transform = CGAffineTransform(rotationAngle: sender.rotation)
 		scrawlView.transform = CGAffineTransform(rotationAngle: sender.rotation)
 	}
+	
+//	private func combineImage(_ backgroundImage: UIImage?, scrawlImage: UIImage?) -> UIImage? {
+//		let imageFrame = CGRect(origin: CGPoint.zero, size: originalSize)
+//		UIGraphicsBeginImageContextWithOptions(originalSize, false, 1.0)
+//		photoImageInfo.originalImage!.draw(in: imageFrame)
+//
+//		if let originalImage = photoImageInfo.originalImage {
+//			originalImage.draw(in: imageFrame)
+//		}
+//		if let scrawlImage = scrawlImage {
+//			scrawlImage.draw(in: imageFrame, blendMode: .sourceAtop, alpha: scrawlAlpha)
+//		}
+//		let resultImage = UIGraphicsGetImageFromCurrentImageContext()
+//		UIGraphicsEndImageContext()
+//
+//		return resultImage
+//	}
 }
 
 extension ViewController: UIScrollViewDelegate {

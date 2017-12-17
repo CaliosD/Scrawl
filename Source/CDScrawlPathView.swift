@@ -65,7 +65,7 @@ public class CDScrawlPathView: UIView {
 	
 	override public func layoutSubviews() {
 		print(#function, backingImage ?? "empty backing image", frame)
-		pathImageView?.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+		pathImageView?.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
 		model.drawingSize = bounds.size
 
 		updateViewFromModel()
