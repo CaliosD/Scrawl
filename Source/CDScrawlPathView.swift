@@ -77,6 +77,10 @@ public class CDScrawlPathView: UIView {
 		updateViewFromModel()
 	}
 
+	public func scrawlImage() -> UIImage? {
+		return model.finalizedPathImage()
+	}
+	
 	public func combinedImage() -> UIImage? {
 		if let backingImage = backingImage {
 			let width = bounds.width
